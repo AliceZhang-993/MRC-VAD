@@ -1,7 +1,7 @@
 # MRC-VAD
 
 Official PyTorch implementation of the paper:
-**"Event-Attribute-Based Multi­Representation Complementarity for Video Anomaly Detection"** (Under Review at Journal of Visual Communication and Image Representation).
+**"Event-Attribute-Based Multi­Representation Complementarity for Video Anomaly Detection"** (Under Review).
 
 ---
 
