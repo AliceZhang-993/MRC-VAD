@@ -1,0 +1,22 @@
+# Object-level motion feature extraction (feature_extraction/motion/)
+# Pipeline (run in this order): flows.py -> bboxes.py -> extract_motion.py
+
+torch>=1.13
+opencv-python>=4.5
+numpy>=1.21
+scipy>=1.7
+tqdm
+
+# Step 1 (flows.py) needs the FlowNet2 checkpoint plus a CUDA toolkit to build
+# its custom extensions:
+#   mkdir -p checkpoints
+#   wget -O checkpoints/FlowNet2_checkpoint.pth.tar \
+#     https://github.com/NVIDIA/flownet2-pytorch/raw/master/checkpoints/FlowNet2_checkpoint.pth.tar
+#   ./install_custom_layers.sh
+
+# Step 2 (bboxes.py) additionally needs Detectron2. Install from source:
+#   pip install 'git+https://github.com/facebookresearch/detectron2.git'
+# and download the Mask R-CNN R50-FPN weights into ./checkpoints/:
+#   mkdir -p checkpoints
+#   wget -O checkpoints/model_final_f10217.pkl \
+#     https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl

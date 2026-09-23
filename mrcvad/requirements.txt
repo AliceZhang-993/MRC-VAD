@@ -1,0 +1,7 @@
+# MRC-VAD training / inference main package (mrcvad/)
+# Requires a CUDA-capable torch build.
+
+torch>=2.0
+numpy
+scipy
+scikit-learn
