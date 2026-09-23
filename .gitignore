@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Training artifacts (never commit features / weights / logs)
+runs/
+tensorboard_log/
+extracted_features/
+
+# Weights are downloaded separately (see README)
+**/checkpoints/
+
+# Dataset (users keep it outside the repo or symlink it; do not commit)
+dataset/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+.claude/
