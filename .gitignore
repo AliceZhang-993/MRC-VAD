@@ -10,9 +10,8 @@ runs/
 tensorboard_log/
 extracted_features/
 
-# Weights are downloaded separately; keep the empty target directories
-**/checkpoints/*
-!**/checkpoints/.gitkeep
+# Weights are downloaded separately (see README)
+**/checkpoints/
 
 # Dataset (users keep it outside the repo or symlink it; do not commit)
 dataset/
