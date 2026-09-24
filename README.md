@@ -10,27 +10,17 @@ Official PyTorch implementation of the paper:
 
 ---
 
-Video anomaly detection aims to identify events that deviate from normal patterns
-in surveillance videos. Anomalous events are typically rare, diverse, and
-difficult to enumerate, so most methods are trained only on normal data. Since
-such events involve complex variations in appearance, motion and temporal
-patterns, a single representation can hardly capture all of them.
+MRC-VAD takes the **event** as the organizing unit of analysis. 
+An anomalous event can differ from normal events in several aspects:   *what* it is
+*how* it moves
+*how* it evolves
+We organize these aspects as three **event attributes** — **Semantic Identity**, **Object Dynamics** and **Temporal Organization** — which define the functional roles of the corresponding representations in characterizing an event. 
 
-MRC-VAD takes the **event** as the organizing unit of analysis. An anomalous
-event can differ from normal events in several aspects: *what* it is, *how* it
-moves, and *how* it evolves. We organize these aspects as three **event
-attributes** — **Semantic Identity**, **Object Dynamics** and **Temporal
-Organization** — which define the functional roles of the corresponding
-representations in characterizing an event. MRC-VAD instantiates each attribute
-as a representation that provides a complementary view of the event, and models
-the three independently within a density-estimation framework, combining their
-anomaly scores after a unified normalization step.
-
-| branch         | attribute                                | representation                          | dim  | extractor                        |
-|----------------|------------------------------------------|-----------------------------------------|------|----------------------------------|
-| **Semantic**   | What it is (Semantic Identity)           | frame-centric semantic representation   | 1152 | `feature_extraction/hiera/`      |
-| **Motion**     | How it moves (Object Dynamics)           | object-centric motion representation    | 8*   | `feature_extraction/motion/`     |
-| **Continuity** | How it evolves (Temporal Organization)   | sequence-centric continuity representation | 1536 | `feature_extraction/continuity/` |
+| Attribute                                | Representation                          |Dim  | Extractor                        |
+|------------------------------------------|-----------------------------------------|------|----------------------------------|
+| **What it is (Semantic Identity)**           | Frame-centric semantic representation   | 1152 | `feature_extraction/hiera/`      |
+| **How it moves (Object Dynamics)**           | Object-centric motion representation    | 8*   | `feature_extraction/motion/`     |
+| **How it evolves (Temporal Organization)**   | Sequence-centric continuity representation | 1536 | `feature_extraction/continuity/` |
 
 \* `ped2` uses 1 bin; `avenue` / `shanghaitech` use 8.
 
