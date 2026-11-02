@@ -1,0 +1,13 @@
+# Continuity-feature training & extraction (feature_extraction/continuity/)
+# = I3D backbone + Continuity/Discontinuity/MissingFrame heads, padding variant (exp3).
+#
+# Third-party modules referenced by the package. I3D itself is vendored under
+# models/i3d/ (Apache-2.0); you only need to supply pretrained weights, see
+# config/experiments.yaml -> continuity_learning.pretrained_path.
+
+torch>=2.0
+pyyaml
+numpy
+opencv-python
+tensorboard       # used by utils/logger.py only (training-time logging)
+tqdm

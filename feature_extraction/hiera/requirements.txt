@@ -1,0 +1,14 @@
+# Hiera-Large RGB feature extraction (feature_extraction/hiera/extract_hiera.py)
+# - Requires a torch build with CUDA (>= 2.0 recommended).
+torch>=2.0
+torchvision>=0.15
+opencv-python>=4.5
+numpy>=1.21
+einops
+timm
+
+# The Hiera model itself (facebookresearch/hiera). Install the repo so the
+# 'hiera' package is importable; weights (hiera_large_16x224.pth, MAE-K400
+# finetuned) are downloaded automatically by torch.hub on first run.
+#   pip install git+https://github.com/facebookresearch/hiera.git
+#   # or: export PYTHONPATH=/path/to/hiera

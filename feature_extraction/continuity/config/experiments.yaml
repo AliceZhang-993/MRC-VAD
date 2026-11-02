@@ -1,0 +1,66 @@
+experiments:
+  exp3:
+    expname: "exp3"
+    module_path: "exps.exp3"
+    model:
+      learning_rate: 3.0e-4
+      use_time_embedding: false
+      weight_decay: 0.01
+    continuity_learning:
+      enabled: true
+      ContinuityHead: true
+      DiscontinuityHead: true
+      MissingFrameHead: true
+      i3d_repo_path: "models/i3d"
+      pretrained_path: "checkpoints/rgb_imagenet.pt"
+      clip_length: 12
+      missing_frame_length: 1
+      optimizer:
+        type: AdamW
+        lr: 0.0003
+        weight_decay: 0.01
+      loss_weights:
+        cj: 1.0
+        dl: 1.0
+        mfe: 0.1
+      contrastive:
+        omega: 0.5
+        tau: 0.1
+      gradient_masking:
+        enable: true
+        padding:
+          discontinuous: "front"
+          missing_frame: "duplicate"
+      unfreeze_schedule:
+        stage1_epoch: 1
+        stage1_layers: ["Inception5a", "Inception5b", "Inception4e", "layer4"]
+        stage2_epoch: 11
+        stage2_layers: ["Inception4a", "Inception4b", "Inception4c", "Inception4d", "layer3"]
+        stage2_datasets: ["avenue", "shanghaitech"]
+    train:
+      max_epochs: 120
+      val_interval: 1000
+      mixed_precision: "fp32"
+      sync_batchnorm: true
+      grad_accum_steps: 1
+      resumepoint_path:
+    test:
+      mixed_precision: "fp32"
+      sync_batchnorm: true
+      checkpoint_path: "checkpoints/exp3"
+      infer_split: "both"
+    data:
+      num_workers: 4
+      clip_length: 12
+      group_size: 12
+      random_sampling: false
+      num_samples: 1
+      data_root: "../../../dataset"
+      dataset_name: "avenue"
+    hardware:
+      titan_x:
+        batch_size: 6
+        val_batch_size: 6
+      rtx4090:
+        batch_size: 120
+        val_batch_size: 120
